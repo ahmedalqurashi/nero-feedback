@@ -47,15 +47,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin: 0 auto 35px;
             padding: 10px 0;
+            width: fit-content;
         }
 
         .logo {
             height: 60px;
             width: auto;
             object-fit: contain;
+            display: block;
         }
 
         .logo-separator {
@@ -63,6 +65,9 @@
             font-size: 24px;
             font-weight: 400;
             opacity: 0.7;
+            line-height: 1;
+            display: flex;
+            align-items: center;
         }
 
         h1 {
@@ -116,7 +121,7 @@
 
         .button {
             width: 100%;
-            background: linear-gradient(135deg, #FF3366 0%, #FF1744 100%);
+            background: #FF3366;
             color: white;
             border: none;
             border-radius: 12px;
@@ -131,7 +136,7 @@
         .button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 51, 102, 0.5);
-            background: linear-gradient(135deg, #FF1744 0%, #FF3366 100%);
+            background: #ff4d7a;
         }
 
         .button:active {
@@ -181,12 +186,45 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
             .container {
-                padding: 40px 30px;
+                padding: 35px 25px;
+            }
+
+            .logo-container {
+                gap: 12px;
+                margin-bottom: 25px;
+            }
+
+            .logo {
+                height: 45px;
+            }
+
+            .logo-separator {
+                font-size: 18px;
             }
 
             h1 {
-                font-size: 28px;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            textarea {
+                min-height: 120px;
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            .button {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -196,9 +234,8 @@
         <div class="logo-container">
             <img src="media/nero_logo.png" alt="Nero Logo" class="logo">
             <span class="logo-separator">×</span>
-            <img src="media/andorra_logo.jpg" alt="Andorra Village Logo" class="logo">
+            <img src="media/Andorra Logo_new.png" alt="Andorra Village Logo" class="logo">
         </div>
-        <h1>We'd love your feedback</h1>
         
         <form id="feedbackForm" action="https://formsubmit.co/info@usenero.com" method="POST">
             <input type="hidden" name="_subject" value="New Feedback from Nero x Andorra">
