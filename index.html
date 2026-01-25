@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback</title>
+    <title>Feedback - Nero x Andorra Village</title>
     <style>
         * {
             margin: 0;
@@ -247,6 +247,7 @@
             <input type="hidden" name="_subject" value="New Feedback from Nero x Andorra">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="box">
+            <input type="hidden" name="_next" value="https://ahmedalqurashi.github.io/nero-feedback/?success=true">
             <div class="form-group">
                 <textarea 
                     id="feedback" 
@@ -281,6 +282,17 @@
         textarea.addEventListener('input', function() {
             charCount.textContent = this.value.length;
         });
+
+        // Check if redirected back with success
+        if (window.location.search.includes('success=true')) {
+            successMessage.classList.add('show');
+            // Remove the URL parameter
+            window.history.replaceState({}, document.title, window.location.pathname);
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        }
 
         // Form submission
         form.addEventListener('submit', function(e) {
