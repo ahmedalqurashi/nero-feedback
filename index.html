@@ -191,6 +191,117 @@
             margin-top: 8px;
         }
 
+        .question-box {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .feedback-section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .optional-label {
+            display: inline-block;
+            background: #FF3366;
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .feedback-section {
+            text-align: center;
+        }
+
+        .feedback-section form {
+            text-align: left;
+        }
+
+        .question-label {
+            display: inline-block;
+            color: #FF3366;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .question-title {
+            color: #1a1a1a;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .option-box {
+            flex: 1;
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: #6b7280;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.05) 0%, rgba(230, 20, 84, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .option-box:hover {
+            border-color: #FF3366;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.15);
+        }
+
+        .option-box:hover::before {
+            opacity: 1;
+        }
+
+        .option-box.selected {
+            border-color: #FF3366;
+            color: #FF3366;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.05) 0%, rgba(230, 20, 84, 0.05) 100%);
+            box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.1);
+        }
+
+        .option-box:active {
+            transform: translateY(0);
+        }
+
+        .option-text {
+            position: relative;
+            z-index: 1;
+        }
+
         @media (max-width: 480px) {
             body {
                 padding: 15px;
@@ -232,6 +343,40 @@
             .form-group {
                 margin-bottom: 20px;
             }
+
+            .question-box {
+                margin-bottom: 30px;
+            }
+
+            .feedback-section {
+                margin-top: 30px;
+                padding-top: 25px;
+            }
+
+            .optional-label {
+                font-size: 9px;
+                padding: 5px 12px;
+                margin-bottom: 12px;
+            }
+
+            .question-label {
+                font-size: 10px;
+                margin-bottom: 10px;
+            }
+
+            .question-title {
+                font-size: 15px;
+                margin-bottom: 18px;
+            }
+
+            .options-container {
+                gap: 10px;
+            }
+
+            .option-box {
+                padding: 16px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -242,32 +387,49 @@
             <span class="logo-separator">×</span>
             <img src="media/Andorra Logo_new.png" alt="Andorra Village Logo" class="logo">
         </div>
-        
-        <form id="feedbackForm" action="https://formsubmit.co/info@usenero.com" method="POST">
-            <input type="hidden" name="_subject" value="New Feedback from Nero x Andorra">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="box">
-            <input type="hidden" name="_next" value="https://ahmedalqurashi.github.io/nero-feedback/?success=true">
-            <div class="form-group">
-                <textarea 
-                    id="feedback" 
-                    name="message" 
-                    placeholder="Share your thoughts..."
-                    maxlength="1000"
-                    required
-                ></textarea>
-                <div class="char-count">
-                    <span id="charCount">0</span> / 1000
+
+        <div class="question-box">
+            <div class="question-title">
+                Would you be open to autonomous delivery robots operating in the compound in the future?
+            </div>
+            <div class="options-container">
+                <div class="option-box" data-option="yes">
+                    <span class="option-text">Yes</span>
+                </div>
+                <div class="option-box" data-option="no">
+                    <span class="option-text">No</span>
                 </div>
             </div>
-            
-            <button type="submit" class="button" id="submitBtn">
-                Send Feedback
-            </button>
-        </form>
+        </div>
 
-        <div class="success-message" id="successMessage">
-            ✓ Thank you! Your feedback has been sent.
+        <div class="feedback-section">
+            <div class="optional-label">Optional</div>
+            <form id="feedbackForm" action="https://formsubmit.co/info@usenero.com" method="POST">
+                <input type="hidden" name="_subject" value="New Feedback from Nero x Andorra">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_next" value="https://ahmedalqurashi.github.io/nero-feedback/?success=true">
+                <input type="hidden" name="robot_response" id="robotResponse" value="">
+                <div class="form-group">
+                    <textarea 
+                        id="feedback" 
+                        name="message" 
+                        placeholder="Share your thoughts..."
+                        maxlength="1000"
+                    ></textarea>
+                    <div class="char-count">
+                        <span id="charCount">0</span> / 1000
+                    </div>
+                </div>
+                
+                <button type="submit" class="button" id="submitBtn" disabled>
+                    Send Feedback
+                </button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                ✓ Thank you! Your feedback has been sent.
+            </div>
         </div>
     </div>
 
@@ -299,6 +461,23 @@
             // Let the form submit naturally to FormSubmit
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
+        });
+
+        // Option box selection
+        const optionBoxes = document.querySelectorAll('.option-box');
+        const robotResponse = document.getElementById('robotResponse');
+        
+        optionBoxes.forEach(box => {
+            box.addEventListener('click', function() {
+                // Remove selected class from all boxes
+                optionBoxes.forEach(b => b.classList.remove('selected'));
+                // Add selected class to clicked box
+                this.classList.add('selected');
+                // Store the selected option
+                robotResponse.value = this.dataset.option;
+                // Enable the submit button
+                submitBtn.disabled = false;
+            });
         });
     </script>
 </body>
